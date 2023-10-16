@@ -1,4 +1,4 @@
-import { FooterBanner, HeroBanner } from "@/components";
+import { FooterBanner, HeroBanner, Product } from "@/components";
 import { client } from "@/lib/client";
 import Image from "next/image";
 
@@ -27,9 +27,11 @@ export default async function Home() {
         <p>Earphones of many variations</p>
       </div>
       <div className="products-container">
-        {products?.map((product) => product.name)}
+        {products?.map((product) => (
+          <Product key={product._id} product={product} />
+        ))}
       </div>
-      <FooterBanner />
+      <FooterBanner footerBanner={banner && banner[0]} />
     </div>
   );
 }
