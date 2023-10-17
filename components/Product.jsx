@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/lib/client";
-import product from "@/sanity-ecommerce/schemas/product";
 
 const Product = ({ product: { image, slug, name, price } }) => {
   return (

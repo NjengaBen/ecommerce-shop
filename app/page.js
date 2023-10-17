@@ -21,7 +21,6 @@ export default async function Home() {
   return (
     <div>
       <HeroBanner heroBanner={banner.length && banner[0]} />
-      {console.log(banner)}
       <div className="products-heading">
         <h2>Best selling products</h2>
         <p>Earphones of many variations</p>
