@@ -21,10 +21,11 @@ const Data = ({
         <div>
           <div className="image-container">
             <Image
-              src={urlFor(image && image[0])}
+              src={urlFor(image && image[index])}
               alt="product"
-              width={450}
-              height={450}
+              width={400}
+              height={400}
+              className="product-detail-image"
             />
           </div>
           <div className="small-images-container">
