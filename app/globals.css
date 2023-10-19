@@ -411,6 +411,7 @@ span.text-red {
 }
 .product-detail-container {
   display: flex;
+  justify-content: center;
   gap: 40px;
   margin: 40px;
   margin-top: 60px;
@@ -454,7 +455,20 @@ span.text-red {
 
 .product-detail-desc h4 {
   margin-top: 10px;
+  font-size: 25px;
+  font-weight: 500;
 }
+
+.product-detail-desc h3 {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.product-detail-desc h1 {
+  font-size: 50px;
+  font-weight: 700;
+}
+
 .product-detail-desc p {
   margin-top: 10px;
 }
@@ -518,6 +532,8 @@ span.text-red {
   transform: scale(1.1, 1.1);
 }
 .quantity-desc {
+  display: flex;
+  align-items: center;
   border: 1px solid gray;
   padding: 6px;
 }
