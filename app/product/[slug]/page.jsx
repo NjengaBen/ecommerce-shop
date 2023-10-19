@@ -14,7 +14,6 @@ const ProductDetails = async ({ params }) => {
   const { slug } = params;
   const productDetails = await getProductDetails(slug);
   const products = await getProducts(slug);
-  console.log(productDetails.image[0]);
 
   return <Data productDetails={productDetails} products={products} />;
 };
