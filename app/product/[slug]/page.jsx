@@ -12,10 +12,10 @@ export const generateStaticParams = async () => {
 
 const ProductDetails = async ({ params }) => {
   const { slug } = params;
-  const productDetails = await getProductDetails(slug);
+  const product = await getProductDetails(slug);
   const products = await getProducts(slug);
 
-  return <Data productDetails={productDetails} products={products} />;
+  return <Data products={products} product={product} />;
 };
 
 export default ProductDetails;

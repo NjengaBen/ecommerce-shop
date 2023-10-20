@@ -11,10 +11,8 @@ import { Product } from "@/components";
 import Image from "next/image";
 import { useStateContext } from "@/context/StateContext";
 
-const Data = ({
-  products,
-  productDetails: { image, name, price, details },
-}) => {
+const Data = ({ products, product }) => {
+  const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
   const { qty, incQty, decQty, onAdd } = useStateContext();
   return (
