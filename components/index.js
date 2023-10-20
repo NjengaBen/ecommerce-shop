@@ -4,6 +4,16 @@ import FooterBanner from "./FooterBanner";
 import HeroBanner from "./HeroBanner";
 import Product from "./Product";
 import Data from "./Data";
-import Provider from "./Providers";
+import Providers from "./Providers";
+import Cart from "./Cart";
 
-export { Navbar, Footer, FooterBanner, HeroBanner, Product, Data, Provider };
+export {
+  Navbar,
+  Footer,
+  FooterBanner,
+  HeroBanner,
+  Product,
+  Data,
+  Providers,
+  Cart,
+};
