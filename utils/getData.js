@@ -13,7 +13,7 @@ export async function getProducts(slug) {
   return products;
 }
 
-export async function getCheckoutItems() {
+export async function handleCheckout(cartItems) {
   const stripe = await getStripe();
   const response = await fetch("/api/stripe", {
     method: "POST",

@@ -12,7 +12,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import toast from "react-hot-toast";
 import { useStateContext } from "@/context/StateContext";
 import { urlFor } from "@/lib/client";
-import { getCheckoutItems } from "@/utils/getData";
+import { handleCheckout } from "@/utils/getData";
 
 const Cart = () => {
   const cartRef = useRef();
@@ -25,9 +25,9 @@ const Cart = () => {
     onRemove,
   } = useStateContext();
 
-  const handleCheckout = () => {
-    getCheckoutItems();
-  };
+  // const handleCheckout = () => {
+  //   getCheckoutItems();
+  // };
 
   return (
     <div className="cart-wrapper" ref={cartRef}>
