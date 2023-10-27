@@ -12,7 +12,8 @@ import { TiDeleteOutline } from "react-icons/ti";
 import toast from "react-hot-toast";
 import { useStateContext } from "@/context/StateContext";
 import { urlFor } from "@/lib/client";
-import { handleCheckout } from "@/utils/getData";
+import getStripe from "@/lib/getStripe";
+// import { handleCheckout } from "@/utils/getData";
 
 const Cart = () => {
   const cartRef = useRef();
@@ -25,9 +26,20 @@ const Cart = () => {
     onRemove,
   } = useStateContext();
 
-  // const handleCheckout = () => {
-  //   getCheckoutItems();
-  // };
+  const handleCheckout = async (cartItems) => {
+    const stripe = await getStripe();
+    const response = await fetch("/api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cartItems),
+    });
+    if (response.statuscode === 500) return;
+    const data = await response.json();
+    toast.loading("Redirecting...");
+    stripe.redirectToCheckout({ sessionId: data.id });
+  };
 
   return (
     <div className="cart-wrapper" ref={cartRef}>

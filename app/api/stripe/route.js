@@ -1,7 +1,8 @@
 import Stripe from "stripe";
+import { NextResponse } from "next/server";
 
 const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
-export default async function handler(req, res) {
+export async function POST(req, res) {
   if (req.method === "POST") {
     console.log(req.body.cartItems);
     try {
@@ -26,12 +27,15 @@ export default async function handler(req, res) {
       };
       // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create(params);
-      res.redirect(303, session.url);
+      NextResponse.redirect(303, session.url);
     } catch (err) {
-      res.status(err.statusCode || 500).json(err.message);
+      // res.status(err.statusCode || 500).json(err.message);
+      NextResponse.json(err.message);
     }
   } else {
     res.setHeader("Allow", "POST");
-    res.status(405).end("Method Not Allowed");
+    NextResponse.json({ message: "Only POST requests allowed" });
+    // res.status(405).end("Method Not Allowed");
+    // res.status(405).end();
   }
 }
