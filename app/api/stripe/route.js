@@ -38,6 +38,7 @@ const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 //     // res.status(405).end("Method Not Allowed");
 //   }
 // }
+
 export async function POST(req, res) {
   const body = await req.json();
   console.log(body);
@@ -64,8 +65,8 @@ export async function POST(req, res) {
       };
       // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create(params);
-      // NextResponse.redirect(303, session.url);
-      return NextResponse.json({ session });
+      NextResponse.redirect(303, session.url);
+      // return NextResponse.json({ session });
     } else {
       return NextResponse.json({ message: "No Data Found" });
     }
