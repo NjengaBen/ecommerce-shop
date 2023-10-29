@@ -52,21 +52,38 @@ export async function POST(req, res) {
           { shipping_rate: "shr_1O3VS9EDncU7qHk40a90T7LD" },
           { shipping_rate: "shr_1O3VUBEDncU7qHk4TmTzkHmh" },
         ],
-        line_items: [
-          {
-            // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-            price: $80,
-            quantity: 1,
-          },
-        ],
+        line_items: body.map((item) => {
+          const img = item.image[0].asset._ref;
+          const newImage = img
+            .replace(
+              "image-",
+              "https://cdn.sanity.io/images/1jvg14bi/production/"
+            )
+            .replace("webp-", ".webp");
+          return {
+            price_data: {
+              currency: "usd",
+              product_data: {
+                name: item.name,
+                images: [newImage],
+              },
+              unit_amount: item.price * 100,
+            },
+            adjustable_quantity: {
+              enabled: true,
+              minimum: 1,
+            },
+            quantity: item.quantity,
+          };
+        }),
         mode: "payment",
         success_url: `${req.headers.origin}/?success=true`,
         cancel_url: `${req.headers.origin}/?canceled=true`,
       };
       // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create(params);
-      NextResponse.redirect(303, session.url);
-      // return NextResponse.json({ session });
+      // NextResponse.redirect(303, session.url);
+      return NextResponse.status(200).json({ session });
     } else {
       return NextResponse.json({ message: "No Data Found" });
     }
