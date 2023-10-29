@@ -41,9 +41,9 @@ const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
 export async function POST(req, res) {
   const body = await req.json();
-  console.log(body);
+  // console.log(body);
   try {
-    if (body.lenght > 0) {
+    if (body.length > 0) {
       const params = {
         submit_type: "pay",
         payment_method_types: ["card"],
@@ -89,6 +89,6 @@ export async function POST(req, res) {
     }
   } catch (err) {
     // res.status(err.statusCode || 500).json(err.message);
-    NextResponse.json(err.message);
+    return NextResponse.json(err.message);
   }
 }
