@@ -13,7 +13,6 @@ import toast from "react-hot-toast";
 import { useStateContext } from "@/context/StateContext";
 import { urlFor } from "@/lib/client";
 import getStripe from "@/lib/getStripe";
-// import { handleCheckout } from "@/utils/getData";
 
 const Cart = () => {
   const cartRef = useRef();
