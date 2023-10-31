@@ -1,6 +1,5 @@
 import { FooterBanner, HeroBanner, Product } from "@/components";
 import { client } from "@/lib/client";
-import Image from "next/image";
 
 const getProducts = async () => {
   const query = '*[_type == "product"]';
